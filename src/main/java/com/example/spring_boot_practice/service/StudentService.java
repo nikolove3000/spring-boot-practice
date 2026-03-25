@@ -6,6 +6,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class StudentService {
@@ -32,7 +33,8 @@ public class StudentService {
         return studentRepository.findByName(name);
     }
 
-    public Student findByEmail(String email) {
+    public Optional<Student> findByEmail(String email) {
+
 
         return studentRepository.findByEmail(email);
     }
