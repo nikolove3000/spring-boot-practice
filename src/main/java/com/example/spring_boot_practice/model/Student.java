@@ -1,12 +1,21 @@
 package com.example.spring_boot_practice.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
 /**
  * Represents a student entity used in REST responses.
  * Contains basic student information such as id, name, and email.
  */
+@Entity
 public class Student {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
     private String name;
     private String email;
 
@@ -21,6 +30,9 @@ public class Student {
         this.id = id;
         this.name = name;
         this.email = email;
+    }
+
+    public Student() {
     }
 
     /**
