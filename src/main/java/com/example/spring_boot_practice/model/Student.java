@@ -8,8 +8,8 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 
 /**
- * Represents a student entity used in REST responses.
- * Contains basic student information such as id, name, and email.
+ * JPA entity representing a student.
+ * Contains basic student information including id, name, and email.
  */
 @Entity
 public class Student {
