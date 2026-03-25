@@ -26,4 +26,14 @@ public class StudentService {
 
         return studentRepository.findAll();
     }
+
+    public List<Student> findByName(String name) {
+
+        return studentRepository.findByName(name);
+    }
+
+    public Student findByEmail(String email) {
+
+        return studentRepository.findByEmail(email);
+    }
 }

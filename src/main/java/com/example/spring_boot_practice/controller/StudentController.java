@@ -3,6 +3,7 @@ package com.example.spring_boot_practice.controller;
 import com.example.spring_boot_practice.model.Student;
 import com.example.spring_boot_practice.service.StudentService;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -24,4 +25,16 @@ public class StudentController {
 
         return studentService.getStudents();
     }
+
+    @GetMapping(value = "/students/search")
+    public List<Student> findByName(@RequestParam String name) {
+
+        return studentService.findByName(name);
+    }
+    @GetMapping(value = "/students/search/email")
+    public Student findByEmail(@RequestParam String email) {
+
+        return studentService.findByEmail(email);
+    }
+
 }
