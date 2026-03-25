@@ -3,8 +3,8 @@ package com.example.spring_boot_practice.controller;
 import com.example.spring_boot_practice.model.Student;
 import com.example.spring_boot_practice.service.StudentService;
 import jakarta.validation.Valid;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,9 +24,11 @@ public class StudentController {
     }
 
     @GetMapping(value = "/students")
-    public ResponseEntity<List<Student>> getAllStudent() {
+    public ResponseEntity<Page<Student>> getAllStudent(@RequestParam int page,
+                                                       @RequestParam int size,
+                                                       @RequestParam String sortBy) {
 
-        return ResponseEntity.ok(studentService.getStudents());
+        return ResponseEntity.ok(studentService.getStudents(page, size, sortBy));
     }
 
     @GetMapping(value = "/students/search")

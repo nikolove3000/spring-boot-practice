@@ -3,6 +3,10 @@ package com.example.spring_boot_practice.service;
 import com.example.spring_boot_practice.model.Student;
 import com.example.spring_boot_practice.repository.StudentRepository;
 import jakarta.transaction.Transactional;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,9 +27,9 @@ public class StudentService {
      * @return list of students
      */
     @Transactional
-    public List<Student> getStudents() {
-
-        return studentRepository.findAll();
+    public Page<Student> getStudents(int page, int size, String sortBy) {
+        Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy));
+        return studentRepository.findAll(pageable);
     }
 
     public List<Student> findByName(String name) {
