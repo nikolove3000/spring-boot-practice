@@ -38,4 +38,10 @@ public class StudentService {
 
         return studentRepository.findByEmail(email);
     }
+
+    public Student save(Student student) {
+
+        return studentRepository.save(student);
+    }
+
 }

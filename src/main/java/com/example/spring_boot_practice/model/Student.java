@@ -4,6 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 
 /**
  * Represents a student entity used in REST responses.
@@ -14,9 +16,13 @@ public class Student {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
+    @NotBlank(message = "Name can not be empty")
     private String name;
+
+    @NotBlank(message = "Email can not be empty")
+    @Email(message = "Please enter a valid email")
     private String email;
 
     /**
@@ -26,7 +32,7 @@ public class Student {
      * @param name the student's name
      * @param email the student's email address
      */
-    public Student(long id, String name, String email) {
+    public Student(Long id, String name, String email) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -40,7 +46,7 @@ public class Student {
      *
      * @return student id
      */
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -49,7 +55,7 @@ public class Student {
      *
      * @param id the id to set
      */
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

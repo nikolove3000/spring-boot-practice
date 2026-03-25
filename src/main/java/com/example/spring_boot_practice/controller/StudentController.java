@@ -2,10 +2,11 @@ package com.example.spring_boot_practice.controller;
 
 import com.example.spring_boot_practice.model.Student;
 import com.example.spring_boot_practice.service.StudentService;
+import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -39,6 +40,12 @@ public class StudentController {
         Optional<Student> student = studentService.findByEmail(email);
         return student.map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
+    }
+
+    @PostMapping(value = "student")
+    public ResponseEntity<Student> saveStudent(@Valid @RequestBody Student student) {
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(studentService.save(student));
     }
 
 }
